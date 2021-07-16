@@ -19,6 +19,14 @@ app.get("/api/notes", (req, res) => {
     let data = JSON.parse(fs.readFile("db/db.json", "utf8",));
     res.json(data);
 });
+// POST Request
+app.post("/api/notes", (req, res) => {
+    const newNote = req.body;
+    data.push(newNote);
+
+    let data = JSON.parse(fs.readFile("db/db.json", "utf8",));
+    res.json(data);
+})
 
 
 // HTML Routes
@@ -28,6 +36,7 @@ app.get('/notes', function(req, res) {
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+
 
 // Sets up server to begin listening
 app.listen(PORT, () =>
