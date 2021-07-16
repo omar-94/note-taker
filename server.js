@@ -3,6 +3,7 @@ const exp = require('constants');
 const express = require('express');
 const path = require('path');
 const fs = require("fs");
+const { v4: uuidv4 } = require('uuid');
 
 // Sets up the Express App
 const app = express();
@@ -24,6 +25,8 @@ app.get("/api/notes", (req, res) => {
 // POST Request
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
+    
+    newNote.id = uuidv4();
     
     let data = JSON.parse(fs.readFileSync("db/db.json", "utf8",));
     
