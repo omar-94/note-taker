@@ -12,6 +12,10 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
 
+// Routes
+app.get('/notes', function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/notes.html"))
+})
 
 
 // Sets up server to begin listening
