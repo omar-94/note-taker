@@ -24,9 +24,10 @@ app.get("/api/notes", (req, res) => {
 // POST Request
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
-    notes.push(newNote);
-
+    
     let data = JSON.parse(fs.readFileSync("db/db.json", "utf8",));
+    
+    data.push(newNote);
     
     fs.writeFileSync('./db/db.json', JSON.stringify(data));
 
