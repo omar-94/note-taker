@@ -2,6 +2,7 @@
 const exp = require('constants');
 const express = require('express');
 const path = require('path');
+const fs = require("fs");
 
 // Sets up the Express App
 const app = express();
@@ -12,7 +13,15 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
 
-// Routes
+// API Routes
+// GET Request
+app.get("/api/notes", (req, res) => {
+    let data = JSON.parse(fs.readFile("db/db.json", "utf8",));
+    res.json(data);
+});
+
+
+// HTML Routes
 app.get('/notes', function(req, res) {
     res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
